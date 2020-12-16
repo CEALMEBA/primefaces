@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>AGREGAR</title>
+          <f:event type="preRenderView" listener="#{loginBean.checarsession()}"/>
+    </h:head>
+    <h:body>
+        <h:form id="form" class="form-horizontal">  
+            <div class="form-group">  
+                <div class="col-sm-4"></div>  
+                <div  class="col-sm-4">  
+                    <h2 style="text-align: center">AGREGAR USUARIO NUEVO</h2>  
+                </div>  
+            </div>  
+
+            <br>
+                <center>
+                <h:outputText value="CLAVE: " />
+                <span class="ui-float-label">
+                    <p:inputText id="float-input" value="#{userBean.user.clave}" />
+                    <p:outputLabel for="@previous"  />
+                </span>
+                </center>
+            </br>
+
+            <br>
+                <center>
+                <h:outputText value="NOMBRE: " />
+                <span class="ui-float-label">
+                    <p:inputText id="float-in" value="#{userBean.user.nombre}" />
+                    <p:outputLabel for="@previous"  />
+                </span>
+                </center>
+            </br>
+            <br>
+                <center>
+                <h:outputText value="DOMICILIO: " />
+                <span class="ui-float-label">
+                    <p:inputText id="float-i" value="#{userBean.user.domicilio}" />
+                    <p:outputLabel for="@previous"  />
+                </span>
+                </center>
+            </br>
+            <br>
+                <center>
+                <h:outputText value="TELEFONO: " />
+                <span class="ui-float-label">
+                    <p:inputText id="float-inut" value="#{userBean.user.telefono}" />
+                    <p:outputLabel for="@previous"  />
+                </span>
+                </center>
+            </br>
+
+            <div class="form-group">  
+                <div class="col-sm-4"></div>  
+                <div class="col-sm-4">  
+                    <div class="col-sm-2">  
+                        <center><br>
+                         <p:growl id="growl" life="2000" />
+                        <p:commandButton value="guardar" id="save" update="growl" action="#{userBean.sendData()}" style="margin-right:20px;" ajax="false" />
+                            </br> </center>
+                        <center><br>
+                        <p:commandButton action="#{userBean.update()}" value="Actualizar">
+                            <f:setPropertyActionListener target="#{userBean.clave}" value="#{user.clave}"/>
+                      </p:commandButton>
+                            </br> </center>
+                    </div>  
+                    <div class="col-sm-1">  
+                    </div>  
+                    <div class="col-sm-2">  
+                        
+                        <center><br>
+                        <p:link outcome="lista" value="ver todos los registros">
+                            <f:param name="clave" value="?" />
+                        </p:link></br>
+                    </center>
+                    </div> 
+                
+                </div>  
+            </div>  
+        </h:form>  
+    </h:body>
+</html>
+

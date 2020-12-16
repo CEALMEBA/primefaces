@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>RERGISTRO</title>
+        <meta charset="UTF-8"/>
+        <meta name='language' content='ES'/>
+    </h:head>
+    <h:body>
+        <div class="card">
+            <h2>NUEVO REGISTRO</h2>
+            <h:form>
+                <h:outputText value="Usuario: " />
+                <span class="ui-float-label">
+                    <p:inputText id="float-input" value="#{loginBean.user.nombre}" />
+                    <p:outputLabel for="@previous"  />
+                </span>
+
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Contraseña: " />
+                    <p:password id="nonFeedback" value="#{loginBean.user.clave}" />
+                </h:panelGrid>
+
+                                        <p:growl id="growl" life="2000" />
+                   <p:commandButton value="Aceptar" id="login"  update="growl" action="#{loginBean.insert()}" style="margin-right:20px;" ajax="false" />
+
+                <p:commandButton value="Regresar" id="regre" action="#{loginBean.navegaPrincipal()}" style="margin-right:20px;" ajax="false" />
+
+            </h:form>
+        </div>
+
+    </h:body>
+</html>
