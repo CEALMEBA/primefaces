@@ -41,9 +41,9 @@ public class DetpaBean {
 
     public void delete() {
         System.out.println("delete");
-       /* MIDAO.delete(clave);
+        MIDAO.delete(clave);
         detpfind = MIDAO.readall();
-        addMessage("ELIMINADO!!");*/
+        addMessage("ELIMINADO!!");
     }
 
     public void update() {

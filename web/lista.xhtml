@@ -18,12 +18,13 @@
                 <p:menuitem value="Departamentos" url="listaD.xhtml" icon="ui-icon-arrowreturnthick-1-e" />  
             </p:submenu>  
         </p:menubar>  
-        <h:form >  
+        
             <center>  
                 <h2><h:outputText value="REGISTRO DE USUARIOS"/></h2>  
             </center> 
-            <h:form id="mainFort">  
-                <p:dataTable var="user" value="#{userBean.userfind}">
+            <h:form id="mForm">  
+
+                <p:dataTable var="user"  id="uList" value="#{userBean.records}" reflow="true" rows="5" paginator="true">
                     <p:column headerText="CLAVE">
                         <h:outputText value="#{user.clave}" />
                     </p:column>
@@ -40,10 +41,10 @@
                         <h:outputText value="#{user.telefono}" />
                     </p:column>
 
-                    <p:column headerText="OPCIONES">
-
-                        <p:commandButton action="#{userBean.delete()}" value="Borrar"   >
-                            <f:setPropertyActionListener target="#{userBean.clave}"  value="#{user.clave} "/> 
+                    <p:column headerText="Opciones">
+                        <p:commandButton action="#{userBean.delete()}" 
+                                         value="Eliminar" update=":mForm:uList">
+                            <f:setPropertyActionListener target="#{userBean.clave}" value="#{user.clave}"/>
                         </p:commandButton>
                     </p:column>
 
@@ -56,7 +57,6 @@
                 <br> 
                 </br>
             </h:form> 
-        </h:form>
     </h:body>
 </html>
 

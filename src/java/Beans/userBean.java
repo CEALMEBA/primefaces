@@ -23,39 +23,18 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name="userBean")
 @RequestScoped
 public class userBean {
+    
     private usuarios user;
-    private List <usuarios> userfind;
+    private List <usuarios> records;
     private IDAOGENERAL MIDAO;
     private  int clave;
     
     public userBean(){
-    user =new usuarios();
-    userfind=new ArrayList();
-    MIDAO= new DaoUsuario();
-     userfind =MIDAO.readall();
+        user =new usuarios();
+        MIDAO= new DaoUsuario();
+        records =MIDAO.readall();
     }
-    
-    public void sendData(){
-    MIDAO.insert(user);
-        addMessage("Registrado!!");
-    }
-
-    public void delete(){
-        System.out.println("delete");
-        MIDAO.delete(clave);
-        userfind=MIDAO.readall();
-        addMessage("ELIMINADO!!");
-    }
-    public void update(){
-        System.out.println("update");
-        MIDAO.update(user);
-    }
-    
-    
-    
-    
-    
-    
+     
     public usuarios getUser() {
         return user;
     }
@@ -64,14 +43,14 @@ public class userBean {
         this.user = user;
     }
 
-    public List<usuarios> getUserfind() {
-        return userfind;
+    public List<usuarios> getRecords() {
+        return records;
     }
 
-    public void setUserfind(List<usuarios> userfind) {
-        this.userfind = userfind;
+    public void setRecords(List<usuarios> records) {
+        this.records = records;
     }
-
+    
     public IDAOGENERAL getMIDAO() {
         return MIDAO;
     }
@@ -95,9 +74,33 @@ public class userBean {
           public void eliminado() {
         addMessage("ELIMINADO!!");
     }
+             
+    public void sendData(){
+    MIDAO.insert(user);
+       REGISTRADO();
+    }
+
+    public void delete(){
+        System.out.println("delete");
+        MIDAO.delete(clave);
+        records=MIDAO.readall();
+        eliminado();
+    }
+    public void update(){
+        System.out.println("update");
+        MIDAO.update(user);
+    }
        
     public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    
+    public void buttonAction() {
+        addMessage("Welcome to PrimeFaces!!");
+    }
+    
+    public void hola(){
+        System.out.println("HOLA");   
     }
 }
