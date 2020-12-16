@@ -31,7 +31,7 @@ public class DetpaBean {
     public DetpaBean() {
         dept =new departamentos();
         MIDAO= new DaoDepartamentos();
-        records =MIDAO.readall();      
+        records = MIDAO.readall();      
 }
 
     public departamentos getDept() {
@@ -80,8 +80,9 @@ public class DetpaBean {
 
     public void delete(){
         System.out.println("delete");
-        MIDAO.delete(clave);
-        records=MIDAO.readall();
+        System.out.println("HOLAAA");
+        MIDAO.delete(12);
+        //records=MIDAO.readall();
         eliminado();
     }
     public void update(){

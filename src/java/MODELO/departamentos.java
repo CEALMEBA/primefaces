@@ -31,7 +31,8 @@ public class departamentos {
         this.descripcion = descripcion;
     }
 
-    public departamentos(Integer clave) {
+    public departamentos(int clave) {
+        this.clave = clave;
     }
 
     public departamentos() {
