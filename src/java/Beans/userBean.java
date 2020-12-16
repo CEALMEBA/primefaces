@@ -9,7 +9,6 @@ import DAO.DaoUsuario;
 import MODELO.usuarios;
 import java.util.List;
 import IDAO.IDAOGENERAL;
-import java.util.ArrayList;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;

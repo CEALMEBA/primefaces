@@ -22,46 +22,42 @@
 
 
 
-        <h:form >  
-            <center>  
-                <h2><h:outputText value="REGISTROS DEPARTAMENTOS"/></h2>  
-            </center> 
-            <h:form id="mainFort">  
-                <p:dataTable var="dept" value="#{DetpaBean.detpfind}">
-                    <p:column headerText="CLAVE">
-                        <h:outputText value="#{dept.clave}" />
-                    </p:column>
+        <center>  
+            <h2><h:outputText value="REGISTROS DEPARTAMENTOS"/></h2>  
+        </center> 
+        <h:form id="mForm">  
 
-                    <p:column headerText="NOMBRE">
-                        <h:outputText value="#{dept.nombre}" />
-                    </p:column>
+            <p:dataTable var="dept"  id="uList" value="#{DetpaBean.records}" reflow="true" rows="5" paginator="true">
+                <p:column headerText="CLAVE">
+                    <h:outputText value="#{dept.clave}" />
+                </p:column>
 
-                    <p:column headerText="DESCRIPCION">
-                        <h:outputText value="#{dept.descripcion}" />
-                    </p:column>
+                <p:column headerText="NOMBRE">
+                    <h:outputText value="#{dept.nombre}" />
+                </p:column>
+
+                <p:column headerText="DESCRIPCION">
+                    <h:outputText value="#{dept.descripcion}" />
+                </p:column>
+
+                <p:column headerText="Opciones">
+                    <p:commandButton action="#{DetpaBean.delete()}" 
+                                     value="Eliminar" update=":mForm:uList">
+                        <f:setPropertyActionListener target="#{DetpaBean.clave}" value="#{dept.clave}"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+            <br>
+                <center>
+                    <p:commandButton value="crear usuario" id="crear" action="insert.xhtml?faces-redirect=true" style="margin-right:20px;" ajax="false" /> 
+                </center>
+            </br>
+            <br> 
+            </br>
+        </h:form> 
 
 
-
-
-                    <p:column headerText="OPCIONES">
-                        <p:commandButton action="#{DetpaBean.delete()}" value="Borrar"   >
-                            <f:setPropertyActionListener target="#{DetpaBean.clave}"  value="#{dept.clave} "/> 
-                        </p:commandButton>
-                    </p:column>
-
-                </p:dataTable>
-
-                <br>
-                    <center>
-                        <p:commandButton value="crear departamento" id="crear" action="insertD.xhtml?faces-redirect=true" style="margin-right:20px;" ajax="false" /> 
-                    </center>
-                </br>
-
-                <br>
-
-                </br>
-            </h:form> 
-        </h:form>
 
     </h:body>
 </html>

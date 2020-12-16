@@ -8,12 +8,12 @@ package Beans;
 import DAO.DaoDepartamentos;
 import IDAO.IDAOGENERAL;
 import MODELO.departamentos;
-import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+
 
 /**
  *
@@ -23,33 +23,16 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 public class DetpaBean {
 
-    private departamentos dept;
-    private List<departamentos> detpfind;
+   private departamentos dept;
+    private List <departamentos> records;
     private IDAOGENERAL MIDAO;
-    private int clave;
+    private  int clave;
 
     public DetpaBean() {
-        dept = new departamentos();
-        MIDAO = new DaoDepartamentos();
-        detpfind = MIDAO.readall();
-    }
-
-    public void sendData() {
-        MIDAO.insert(dept);
-        addMessage("Registrado!!");
-    }
-
-    public void delete() {
-        System.out.println("delete");
-        MIDAO.delete(clave);
-        detpfind = MIDAO.readall();
-        addMessage("ELIMINADO!!");
-    }
-
-    public void update() {
-        System.out.println("update");
-        MIDAO.update(dept);
-    }
+        dept =new departamentos();
+        MIDAO= new DaoDepartamentos();
+        records =MIDAO.readall();      
+}
 
     public departamentos getDept() {
         return dept;
@@ -59,12 +42,12 @@ public class DetpaBean {
         this.dept = dept;
     }
 
-    public List<departamentos> getDetpfind() {
-        return detpfind;
+    public List<departamentos> getRecords() {
+        return records;
     }
 
-    public void setDetpfind(List<departamentos> detpfind) {
-        this.detpfind = detpfind;
+    public void setRecords(List<departamentos> records) {
+        this.records = records;
     }
 
     public IDAOGENERAL getMIDAO() {
@@ -82,18 +65,34 @@ public class DetpaBean {
     public void setClave(int clave) {
         this.clave = clave;
     }
-
-    public void REGISTRADO() {
+     public void REGISTRADO() {
         addMessage("REGISTRADO!!");
     }
-
-    public void eliminado() {
+       
+          public void eliminado() {
         addMessage("ELIMINADO!!");
     }
+             
+    public void sendData(){
+    MIDAO.insert(dept);
+       REGISTRADO();
+    }
 
+    public void delete(){
+        System.out.println("delete");
+        MIDAO.delete(clave);
+        records=MIDAO.readall();
+        eliminado();
+    }
+    public void update(){
+        System.out.println("update");
+        MIDAO.update(dept);
+    }
+       
     public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
-
+    
+    
 }
